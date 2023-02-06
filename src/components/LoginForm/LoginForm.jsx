@@ -1,5 +1,15 @@
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form, Field, ErrorMessage  } from 'formik';
 import styled from 'styled-components';
+import * as yup from 'yup';
+
+const schema = yup.object().shape({
+    login: yup.string().required(),
+    password: yup.string().min(6).max(16).required(),
+    
+    });
+ 
+
+
 
 const initialValues = {
     login: '',
@@ -12,33 +22,29 @@ color: #2a2a2a;
 `;
 
 export const LoginForm = () => {
-    // const handleSubmit = e => {
-    //     e.preventDefault();
-    //     const {login, password} = e.target.elements;
-    //     console.log(login.value, password.value);
-    //     // console.log(e.target.elements.login.value);
-        
-    // }
+ 
     const handleSubmit = (values, {resetForm}) => {
         console.log(values);
-        // console.log(resetForm);
         resetForm();
     }
     return (
-        <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+        <Formik initialValues={initialValues} validationSchema={schema}
+         onSubmit={handleSubmit}>
         <Form autoComplete="off" >
         
         <label htmlFor="login">
           Login
           <Input type="text" name='login' />
+          <ErrorMessage name="login" component="div"/>
           </label>
           <label htmlFor="password">
           password
           <Input type="password" name='password' />
+          <ErrorMessage name="password" component="div"/>
           </label>
           
 
-            <button type="submit">Submit</button>
+            <button type="submit">Submit</button> 
         </Form>
         </Formik>
     );
