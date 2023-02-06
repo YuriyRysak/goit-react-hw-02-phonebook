@@ -1,9 +1,10 @@
 
 import React, { Component } from 'react';
-import {ContactsItems} from './ContactsItems/ContactsItems';
+import {ContactForm} from './ContactForm/ContactForm';
 import {ContactList} from './ContactList/ContactList';
 import {Filter} from './Filter/Filter';
 import { nanoid } from 'nanoid';
+import './App.module.css';
 
 // import {LoginForm} from './LoginForm/LoginForm'
 // import { ProductReviewForm } from './ProductReviewForm/ProductReviewForm';
@@ -87,17 +88,17 @@ export class App extends Component {
    
    const visibleContacts = this.getVisibleContacts();
   return (
-    <div>
+    <section>
     <h1>Phonebook</h1>
-    <ContactsItems onSubmit={this.formSubmitHandler}/>
-    {/* <ContactForm ... /> */}
-  
+
+    <ContactForm onSubmit={this.formSubmitHandler}/>
+     
     <h2>Contacts</h2>
     
     <Filter filter={filter} onChangeFilter={this.changeFilter}/>
     <ContactList contacts={visibleContacts}  onDeleteContact={this.deleteContact} />
    
-  </div>
+  </section>
   
    
   );
