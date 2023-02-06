@@ -66,7 +66,8 @@ export class App extends Component {
     const normalizedFilter = filter.toLowerCase();
 
     return contacts.filter(contact => 
-      contact.text.toLowerCase().includes(normalizedFilter));
+      contact.name.toLowerCase().includes(normalizedFilter)
+      );
 
   };
   
@@ -94,10 +95,7 @@ export class App extends Component {
     <h2>Contacts</h2>
     
     <Filter filter={filter} onChangeFilter={this.changeFilter}/>
-    <ContactList
-
-   contacts={visibleContacts} 
-   onDeleteContact={this.deleteContact} />
+    <ContactList contacts={visibleContacts}  onDeleteContact={this.deleteContact} />
    
   </div>
   
